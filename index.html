@@ -7,7 +7,7 @@ THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.
  
 Authors in chronological order of contribution:
 Tim Riedel
-Author 2
+Sabah Pirali
  
 Further Information:
 http://cns.utexas.edu/fri
@@ -16,11 +16,6 @@ Research Educator:
 Timothy Riedel
 triedel@utexas.edu
  
-Brief Description of Goal of Code:
-blah, blah, blah,
- 
-Known Issues:
-blah, blah, blah, blah
 
 https://www.w3schools.com/w3css/default.asp
 https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-file
@@ -36,26 +31,42 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
 
 <script>
-        var allergy_count = 0;
-        var cold_count = 0;
+	
+  var allergy_count = 0;
+  var cold_count = 0;
+	
+  function addAllergy(nextPage)
+	  
+  {
+    allergy_count = allergy_count + 1;
+    window.location.hash = nextPage;
+	  //counting how many times the user say allergies
+  }
 
+  function addCold(nextPage)
+	  
+  {
+    cold_count = cold_count + 1;
+    window.location.hash = nextPage;
+	  //couting how times the user says cold
+  }
 
-        function allergyAdd(){
-            allergy_count = allergy_count + 1;
-		alert(allergy_count);
+  function showResults()
+	  
+  {
+    var allergyPercent = (allergy_count / 4) * 100;
+    var coldPercent = (cold_count / 4) * 100;
 
-        }
-
-        function coldAdd(){
-            cold_count = cold_count + 1;
-        }
-
-  </script>
+    document.getElementById("results").innerHTML =
+      "Allergy = " + allergyPercent + "%, Cold = " + coldPercent + "%";
+	  //equation to determine percentage. Taking numbers dividing by 4 and mulitplying
+  }
+</script>
 
 
 
 <style>	
-.body {
+body {
      margin: 0em;
 }
 
@@ -90,6 +101,7 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
  	
 	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
 </div> <!-- adding this because it seems to be missing????? -->
+	//basic instructions for the user to see before answering questions
 	
 <div class="page" id="one">
 	<div id="header" class="w3-container w3-flat-carrot">
@@ -97,7 +109,12 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	</div>
 	
     	<div id="content" class="w3-container">
-        <p>Put Question 1 content here.</p>    
+        <p>Are your eyes watery or itchy?</p>   
+			//first question
+		<button class="w3-btn w3-black w3-round" onclick="addAllergy('two')">Yes</button>
+		<button class="w3-btn w3-black w3-round" onclick="addCold('two')">No</button>
+			//seeing the response and then adding it to the equation
+
     	</div>
 </div>
 
@@ -107,11 +124,64 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 	</div>
 	
 	<div id="content" class="w3-container">
-		<p>Content of page 2 goes here.</p>
+		<p>Do you have a fever?</p>
+		//second question
+		<button class="w3-btn w3-black w3-round" onclick="addCold('three')">Yes</button>
+		<button class="w3-btn w3-black w3-round" onclick="addAllergy('three')">No</button>
+			//seeing the response and then adding it to the equation
+
+		
 	</div>
 </div>	
 
+<div class="page" id="three">
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 3</h1>
+	</div>
+	
+    	<div id="content" class="w3-container">
+        <p>Do you have a sore throat?</p>   
+			//third question
+		<button class="w3-btn w3-black w3-round" onclick="addCold('four')">Yes</button>	
+		<button class="w3-btn w3-black w3-round" onclick="addAllergy('four')">No</button>
+			//seeing the response and then adding it to the equation
+
+
+    	</div>
+</div>
+
+<div class="page" id="four">
+	<div id="header" class="w3-container w3-flat-carrot">
+		<h1>Question 4</h1>
+	</div>
+	
+    	<div id="content" class="w3-container">
+        <p>Are your symptoms seasonal or chronic??</p>  
+			//fourth question
+	<button class="w3-btn w3-black w3-round" onclick="addAllergy('resultsPage')">Yes</button>
+	<button class="w3-btn w3-black w3-round" onclick="addCold('resultsPage')">No</button>
+			//seeing the response and then adding it to the equation
+
+
+    	</div>
+</div>
+
+	<div class="page" id="resultsPage">
+  <div class="w3-container w3-flat-carrot">
+    <h1>Results</h1>
+  </div>
+
+  <div id="content" class="w3-container">
+    <p id="results">Click to see results.</p>
+    <button class="w3-btn w3-black w3-round" onclick="showResults()">Show Results</button>
+    <a href="#" class="w3-btn w3-grey w3-round">Start Over</a>
+	  //results page
+  </div>
+</div>
+	
 <footer class="w3-bottom w3-container w3-flat-carrot">
+
+	
 	<p>DIY!</p>
 </footer>
 
