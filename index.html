@@ -34,27 +34,33 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
 
 <script>
+	// These variables store how many answers point toward allergies vs a cold
   var allergy_count = 0;
   var cold_count = 0;
 
+	//adds one point to the allergy formula then moves to the next page
   function yesAllergy(nextPage){
     allergy_count = allergy_count + 1;
     window.location.hash = nextPage;
+	   
   }
 
+	//adds one point to the cold formula then moves to the next page
   function yesCold(nextPage){
     cold_count = cold_count + 1;
     window.location.hash = nextPage;
-  }
 
+
+  }
+// Moves to the next page without changing any scores
   function noNext(nextPage){
     window.location.hash = nextPage;
   }
 
+	// Calculates percentages and prints them
   function showResults(){
     var allergyPercent = (allergy_count / 4) * 100;
     var coldPercent = (cold_count / 4) * 100;
-//formula to calculate percentage and if it works
 	  
     document.getElementById("results").innerHTML =
       "Allergy = " + allergyPercent + "%, Cold = " + coldPercent + "%";
@@ -76,7 +82,7 @@ body {
     overflow-y: auto;
     z-index: 0;
     background-color: hsl(0,0%,100%);
-	//formatting
+	/* formatting */
 }
 
   .page:target {
@@ -86,6 +92,7 @@ body {
 </style>
 
 <body>
+	<!-- Start the app on the home page when the site loads -->
 <div class="page" id="home">
   <div class="w3-container w3-flat-carrot">
     <h1>Cold or Allergies?</h1>
@@ -93,85 +100,102 @@ body {
 
   <div id="content" class="w3-container">
     <p>Are you feeling like you might have a cold but wonder if it is allergies. Answer a few short questions to find out!</p>
+	      <!-- main question/header for the user to see -->
+
 
     <a href="#one" class="w3-btn w3-grey w3-round">Get Started</a>
 
     <p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin. This code is shared for demonstration purposes and should not be considered a product. It is for entertainment purposes only.</p>
 
     <p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+    <!-- important to know, deleted the rest of the comment here that I did not write -->
 
   </div>
 </div>
 
-	
+   <!-- setting up the new page for question one -->
 <div class="page" id="one">
   <div class="w3-container w3-flat-carrot">
+	  <!-- question one -->
     <h1>Question 1</h1>
   </div>
 
   <div id="content" class="w3-container">
     <p>Are your eyes watery or itchy?</p>
-<!-- question one -->
     <!-- YES = Allergy, NO = Cold -->
     <button class="w3-btn w3-black w3-round" onclick="yesAllergy('two')">Yes</button>
     <button class="w3-btn w3-black w3-round" onclick="yesCold('two')">No</button>
+	  	      <!-- the buttons that allow user to click and move on -->
+
   </div>
 </div>
-
+	
+ <!-- setting up the new page for question two -->
 <div class="page" id="two">
   <div class="w3-container w3-flat-carrot">
+	  <!-- question two -->
     <h1>Question 2</h1>
   </div>
 
   <div id="content" class="w3-container">
     <p>Do you have a fever?</p>
-<!-- question two -->
     <!-- YES = Cold, NO = Allergy -->
     <button class="w3-btn w3-black w3-round" onclick="yesCold('three')">Yes</button>
     <button class="w3-btn w3-black w3-round" onclick="yesAllergy('three')">No</button>
+	  <!-- the buttons that allow user to click and move on -->
+	  
   </div>
 </div>
 
+ <!-- setting up the new page for question three -->
 <div class="page" id="three">
   <div class="w3-container w3-flat-carrot">
+	  <!-- question three -->
     <h1>Question 3</h1>
   </div>
 
   <div id="content" class="w3-container">
     <p>Do you have a sore throat?</p>
-<!-- question three -->
     <!-- YES = Cold, NO = Allergy -->
     <button class="w3-btn w3-black w3-round" onclick="yesCold('four')">Yes</button>
     <button class="w3-btn w3-black w3-round" onclick="yesAllergy('four')">No</button>
+	  <!-- the buttons that allow user to click and move on -->
   </div>
 </div>
 
+ <!-- setting up the new page for question four -->
 <div class="page" id="four">
   <div class="w3-container w3-flat-carrot">
+	  <!-- question four -->
     <h1>Question 4</h1>
   </div>
 
   <div id="content" class="w3-container">
     <p>Are your symptoms seasonal or chronic?</p>
-<!-- question four -->
     <!-- YES = Allergy, NO = Cold -->
     <button class="w3-btn w3-black w3-round" onclick="yesAllergy('resultsPage')">Yes</button>
     <button class="w3-btn w3-black w3-round" onclick="yesCold('resultsPage')">No</button>
+	  <!-- the buttons that allow user to click and move on -->
   </div>
 </div>
 
+ <!-- setting up the new page for question results -->
 <div class="page" id="resultsPage">
   <div class="w3-container w3-flat-carrot">
     <h1>Results</h1>
   </div>
 
   <div id="content" class="w3-container">
+	  	  <!-- results button -->
     <p id="results">Click to see results.</p>
+	  <!-- show results -->
     <button class="w3-btn w3-black w3-round" onclick="showResults()">Show Results</button>
     <a href="#" class="w3-btn w3-grey w3-round">Start Over</a>
-<!-- results page -->
+<!-- starts over the code, resets the values so it can be used again -->
+	  
   </div>
 </div>
+<!-- closing the code our -->
 
 
 <footer class="w3-bottom w3-container w3-flat-carrot">
