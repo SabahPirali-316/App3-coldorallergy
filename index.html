@@ -36,26 +36,35 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 
 
 <script>
-        var allergy_count = 0;
-        var cold_count = 0;
+  var allergy_count = 0;
+  var cold_count = 0;
 
+  function yesAllergy(nextPage){
+    allergy_count = allergy_count + 1;
+    window.location.hash = nextPage;
+  }
 
-        function allergyAdd(){
-            allergy_count = allergy_count + 1;
-		alert(allergy_count);
+  function yesCold(nextPage){
+    cold_count = cold_count + 1;
+    window.location.hash = nextPage;
+  }
 
-        }
+  function noNext(nextPage){
+    window.location.hash = nextPage;
+  }
 
-        function coldAdd(){
-            cold_count = cold_count + 1;
-        }
+  function showResults(){
+    var allergyPercent = (allergy_count / 4) * 100;
+    var coldPercent = (cold_count / 4) * 100;
 
-  </script>
-
+    document.getElementById("results").innerHTML =
+      "Allergy = " + allergyPercent + "%, Cold = " + coldPercent + "%";
+  }
+</script>
 
 
 <style>	
-.body {
+body {
      margin: 0em;
 }
 
@@ -77,43 +86,95 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
 </style>
 
 <body>
-<div id="header" class="w3-container w3-flat-carrot">
-	<h1>Cold or Allergies?</h1>
+<div class="page" id="home">
+  <div class="w3-container w3-flat-carrot">
+    <h1>Cold or Allergies?</h1>
+  </div>
+
+  <div id="content" class="w3-container">
+    <p>Are you feeling like you might have a cold but wonder if it is allergies. Answer a few short questions to find out!</p>
+
+    <a href="#one" class="w3-btn w3-grey w3-round">Get Started</a>
+
+    <p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at Austin. This code is shared for demonstration purposes and should not be considered a product. It is for entertainment purposes only.</p>
+
+    <p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
+  </div>
 </div>
-	
-<div id="content" class="w3-container">
-	<p>Are you feeling like you might have a cold but wonder if it is allergies. Answer a few short questions to find out!</p>
-	
-	<a href="#one" class="w3-btn w3-grey w3-round"> Get Started </a>
-	
-	<p>The following code has been developed by students and/or researchers of the Freshman Research Initiative DIY Diagnostics Stream at The University of Texas at 		Austin.  This code is shared for demonstration purposes and should not be considered a product -- it is for entertainment purposes only. Any user of this code 			does so at their own risk. Members of the DIY Stream, FRI, and The University of Texas system are not liable for anything related to this code.</p>
- 	
-	<p>THIS CODE SHOULD NOT BE USED TO DIAGNOSE ANY KIND OF MEDICAL CONDITION.</p>
-</div> <!-- adding this because it seems to be missing????? -->
+
 	
 <div class="page" id="one">
-	<div id="header" class="w3-container w3-flat-carrot">
-		<h1>Question 1</h1>
-	</div>
-	
-    	<div id="content" class="w3-container">
-        <p>Put Question 1 content here.</p>    
-    	</div>
+  <div class="w3-container w3-flat-carrot">
+    <h1>Question 1</h1>
+  </div>
+
+  <div id="content" class="w3-container">
+    <p>Are your eyes watery or itchy?</p>
+    <!-- YES = Allergy, NO = Cold -->
+    <button class="w3-btn w3-black w3-round" onclick="yesAllergy('two')">Yes</button>
+    <button class="w3-btn w3-black w3-round" onclick="yesCold('two')">No</button>
+  </div>
 </div>
 
 <div class="page" id="two">
-	<div class="w3-container w3-flat-carrot">
-		<h1>Question 2</h1>
-	</div>
-	
-	<div id="content" class="w3-container">
-		<p>Content of page 2 goes here.</p>
-	</div>
-</div>	
+  <div class="w3-container w3-flat-carrot">
+    <h1>Question 2</h1>
+  </div>
+
+  <div id="content" class="w3-container">
+    <p>Do you have a fever?</p>
+    <!-- YES = Cold, NO = Allergy -->
+    <button class="w3-btn w3-black w3-round" onclick="yesCold('three')">Yes</button>
+    <button class="w3-btn w3-black w3-round" onclick="yesAllergy('three')">No</button>
+  </div>
+</div>
+
+<div class="page" id="three">
+  <div class="w3-container w3-flat-carrot">
+    <h1>Question 3</h1>
+  </div>
+
+  <div id="content" class="w3-container">
+    <p>Do you have a sore throat?</p>
+    <!-- YES = Cold, NO = Allergy -->
+    <button class="w3-btn w3-black w3-round" onclick="yesCold('four')">Yes</button>
+    <button class="w3-btn w3-black w3-round" onclick="yesAllergy('four')">No</button>
+  </div>
+</div>
+
+<div class="page" id="four">
+  <div class="w3-container w3-flat-carrot">
+    <h1>Question 4</h1>
+  </div>
+
+  <div id="content" class="w3-container">
+    <p>Are your symptoms seasonal or chronic?</p>
+    <!-- YES = Allergy, NO = Cold -->
+    <button class="w3-btn w3-black w3-round" onclick="yesAllergy('resultsPage')">Yes</button>
+    <button class="w3-btn w3-black w3-round" onclick="yesCold('resultsPage')">No</button>
+  </div>
+</div>
+
+<div class="page" id="resultsPage">
+  <div class="w3-container w3-flat-carrot">
+    <h1>Results</h1>
+  </div>
+
+  <div id="content" class="w3-container">
+    <p id="results">Click to see results.</p>
+    <button class="w3-btn w3-black w3-round" onclick="showResults()">Show Results</button>
+    <a href="#" class="w3-btn w3-grey w3-round">Start Over</a>
+  </div>
+</div>
+
 
 <footer class="w3-bottom w3-container w3-flat-carrot">
 	<p>DIY!</p>
 </footer>
+	
+<script>
+  window.location.hash = "home";
+</script>
 
 </body>
 </html>
