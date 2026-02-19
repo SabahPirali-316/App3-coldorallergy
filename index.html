@@ -57,10 +57,11 @@ https://stackoverflow.com/questions/8211128/multiple-distinct-pages-in-one-html-
     window.location.hash = nextPage;
   }
 
-	// Calculates percentages and prints them
+	//Calculates percentages and prints them
+	//updated from 4 to 6 to allow for the new questions to be a part of the code
   function showResults(){
-    var allergyPercent = (allergy_count / 4) * 100;
-    var coldPercent = (cold_count / 4) * 100;
+    var allergyPercent = (allergy_count / 6) * 100;
+    var coldPercent = (cold_count / 6) * 100;
 	  
     document.getElementById("results").innerHTML =
       "Allergy = " + allergyPercent + "%, Cold = " + coldPercent + "%";
@@ -173,9 +174,39 @@ body {
   <div id="content" class="w3-container">
     <p>Are your symptoms seasonal or chronic?</p>
     <!-- YES = Allergy, NO = Cold -->
-    <button class="w3-btn w3-black w3-round" onclick="yesAllergy('resultsPage')">Yes</button>
-    <button class="w3-btn w3-black w3-round" onclick="yesCold('resultsPage')">No</button>
+    <button class="w3-btn w3-black w3-round" onclick="yesAllergy('five')">Yes</button>
+    <button class="w3-btn w3-black w3-round" onclick="yesCold('five')">No</button>
 	  <!-- the buttons that allow user to click and move on -->
+  </div>
+</div>
+
+	<!-- setting up the new page for question five -->
+<div class="page" id="five">
+  <div class="w3-container w3-flat-carrot">
+	  	  <!-- question five -->
+    <h1>Question 5</h1>
+  </div>
+
+  <div id="content" class="w3-container">
+    <p>Is this triggered when exposed to changes such as being around pets or in dusty environments?</p>
+    <!-- YES = Allergy, NO = Cold -->
+    <button class="w3-btn w3-black w3-round" onclick="yesAllergy('six')">Yes</button>
+    <button class="w3-btn w3-black w3-round" onclick="yesCold('six')">No</button>
+  </div>
+</div>
+
+	<!-- setting up the new page for question six -->
+<div class="page" id="six">
+  <div class="w3-container w3-flat-carrot">
+	  	  <!-- question six -->
+    <h1>Question 6</h1>
+  </div>
+
+  <div id="content" class="w3-container">
+    <p>Are you experiencing muscle aches, body aches, or fatigue?</p>
+    <!-- YES = Cold, NO = Allergy -->
+    <button class="w3-btn w3-black w3-round" onclick="yesCold('resultsPage')">Yes</button>
+    <button class="w3-btn w3-black w3-round" onclick="yesAllergy('resultsPage')">No</button>
   </div>
 </div>
 
@@ -195,7 +226,7 @@ body {
 	  
   </div>
 </div>
-<!-- closing the code our -->
+<!-- closing the code -->
 
 
 <footer class="w3-bottom w3-container w3-flat-carrot">
